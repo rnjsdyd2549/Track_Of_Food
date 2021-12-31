@@ -5,9 +5,9 @@ class Track(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(150))
     address = db.Column(db.String(200))
-    distance = db.Column(db.Integer)
-    time = db.Column(db.Integer)
-    kcal = db.Column(db.Integer)
+    distance = db.Column(db.Float)
+    time = db.Column(db.Float)
+    kcal = db.Column(db.Float)
     course = db.Column(db.Integer)
     difficulty = db.Column(db.Integer)
     intro_text = db.Column(db.String(400))
@@ -20,17 +20,18 @@ class Track(db.Model):
 class Food(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(200))
-    carb = db.Column(db.Integer)
-    protein = db.Column(db.Integer)
-    fat = db.Column(db.Integer)
-    sugar = db.Column(db.Integer)
-    salt = db.Column(db.Integer)
-    kcal = db.Column(db.Integer)
+    carb = db.Column(db.Float)
+    protein = db.Column(db.Float)
+    fat = db.Column(db.Float)
+    sugar = db.Column(db.Float)
+    salt = db.Column(db.Float)
+    kcal = db.Column(db.Float)
 
 
 class District(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(3))
+
 
 '''
 Track
