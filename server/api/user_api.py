@@ -9,9 +9,14 @@ class UserInfo(Resource):
   
   @marshal_with(resource_fields)
   def get(self, d_name=None):
-    if not d_name:  # 입력이 아직 들어오지 않았을 때 처리
-      pass          # 아무것도 전달안하면 되는데 무슨 처리를 하지? 
+    if not d_name:   # 입력이 들어오지 았을 때 처리
+      pass
+      
     district = District.query.filter(District.name.like(f'{d_name}%')).all()
+    
+    if not district:  # name에 해당하는 구가 없는 경우 처리 ex) 삵
+      pass
+    
     return district
 
 

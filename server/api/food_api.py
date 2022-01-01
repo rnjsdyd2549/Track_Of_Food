@@ -15,9 +15,14 @@ class FoodInfo(Resource):
   
   @marshal_with(resource_fields)
   def get(self, f_name=None):
-    if not f_name:  
-      pass     
+    if not f_name:  # 입력이 들어오지 았을 때 처리
+      pass
+    
     food = Food.query.filter(Food.name.like(f'{f_name}%')).all()
+    
+    if not food:    # name에 해당하는 음식이 없는 경우 처리  ex) 삵
+      pass
+    
     return food
 
 
