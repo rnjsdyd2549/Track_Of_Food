@@ -1,29 +1,34 @@
-from flask_restful import Resource, fields, marshal_with, abort
-from server.models import Food
+from flask import jsonify
+from flask_restful import Resource, abort
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+  from models import Food
+
 
 class FoodInfo(Resource):
-  resource_fields = { 
-    'id'      : fields.Integer,
-    'name'    : fields.String,
-    'carb'    : fields.Float,
-    'protein' : fields.Float,
-    'fat'     : fields.Float,
-    'sugar'   : fields.Float,
-    'salt'    : fields.Float,
-    'kcal'    : fields.Float,
-    }
-  
-  @marshal_with(resource_fields)
   def get(self, f_name=None):
     if not f_name:  # 입력이 들어오지 았을 때 처리
+      return ''
+    
+    foods = Food.query.filter(Food.name.like(f'%{f_name}%')).all()
+    
+    if not foods:    # name에 해당하는 음식이 없는 경우 처리  ex) 삵
       pass
     
-    food = Food.query.filter(Food.name.like(f'{f_name}%')).all()
-    
-    if not food:    # name에 해당하는 음식이 없는 경우 처리  ex) 삵
-      pass
-    
-    return food
+    result = []
+    for food in foods:
+      result.append({
+        'id' : food.id,
+        'name' : food.name,
+        'carb' : food.carb,
+        'protein' : food.protein,
+        'fat' : food.fat,
+        'salt' : food.salt,
+        'kcal' : food.kcal
+      })
+
+    return jsonify(result)
 
 
 '''

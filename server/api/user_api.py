@@ -1,24 +1,26 @@
-from flask_restful import Resource, fields, marshal_with, abort
-from server.models import District
+from flask import jsonify
+from flask_restful import Resource, abort
 
-class UserInfo(Resource):
-  resource_fields = { 
-      'id'   : fields.Integer,
-      'name' : fields.String
-    }
-  
-  @marshal_with(resource_fields)
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+  from models import District
+
+class UserInfo(Resource): 
   def get(self, d_name=None):
     if not d_name:   # 입력이 들어오지 았을 때 처리
-      pass
+      return ''
       
-    district = District.query.filter(District.name.like(f'{d_name}%')).all()
+    districts = District.query.filter(District.name.like(f'{d_name}%')).all()
     
-    if not district:  # name에 해당하는 구가 없는 경우 처리 ex) 삵
+    if not districts:  # name에 해당하는 구가 없는 경우 처리 ex) 삵
       pass
     
-    return district
-
+    result = []
+    for district in districts:
+      result.append({'id': district.id, 'name': district.name})
+  
+    return jsonify(result)
+    # return jsonify({ 'data' : result, 'status-code': 200}) # 이렇게 보낼까?
 
 '''
 # 메인 페이지 눌렀을 때 페이지 띄워주는 건 리액트서버에서 하나?
