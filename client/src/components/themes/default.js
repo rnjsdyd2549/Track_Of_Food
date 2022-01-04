@@ -1,5 +1,23 @@
-// https://github.com/diegohaz/arc/wiki/Styling
 import { reversePalette } from 'styled-theme/composer'
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+
+const Div = styled('div')(({ theme }) => ({
+  ...theme.typography.button,
+  backgroundColor: theme.palette.background.paper,
+  padding: theme.spacing(1),
+}));
+
+function TypographyTheme() {
+  return <Div>{"This div's text looks like that of a button."}</Div>;
+}
+
+export default {TypographyTheme}
+
+/*
+import React from 'react';
+import { createTheme, ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = {}
 
@@ -35,3 +53,5 @@ theme.sizes = {
 }
 
 export default theme
+
+*/

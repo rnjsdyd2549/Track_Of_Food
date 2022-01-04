@@ -1,66 +1,26 @@
-// '음식 고르러가기', 모달창의 '예', '아니오', 음식 고르는 페이지의 '결과보기' 등과 
-// 상세지도 보기 모달의 'X'버튼, 담은 음식들의 음식 삭제 버튼도 해당
-// 일반 자바스크립트로 변경해야됨
-// https://github.com/danilowoz/react-atomic-design/blob/master/src/components/atoms/button/index.js
-// @flow 
-import * as React from 'react'
-import classnames from 'classnames'
+import * as React from 'react';
+import { styled } from '@material-ui/core'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-import styles from './style.css'
+const MyButton = styled(Button)({
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  border: 0,
+  borderRadius: 3,
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+});
 
-export const ButtonType = {
-  BUTTON: 'button',
-  RESET: 'reset',
-  SUBMIT: 'submit',
-}
 
-export const ButtonTheme = {
-  DEFAULT: 'default',
-  ROUNDED: 'rounded',
-}
-
-export const ButtonSize = {
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large',
-}
-
-type Props = {
-  type: string,
-  theme: string,
-  size: string,
-  onClick: Function,
-  children: React.Node,
-  className: string,
-  disabled: boolean,
-}
-
-const Button = (props: Props): React.Element<*> => {
-  const { type, onClick, children, theme, size, className, disabled } = props
-  const classProps: string = classnames(
-    styles.button,
-    styles[theme],
-    styles[size],
-    {
-      [styles.disabled]: disabled,
-    },
-    className
-  )
-
+export default function BasicButtons() {
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={classProps}>
-      {children}
-    </button>
-  )
+    // <Stack spacing={2} direction="row">
+    //   <Button variant="text">Text</Button>
+    //   <Button variant="contained">Contained</Button>
+    //   <Button variant="outlined">Outlined</Button>
+    // </Stack>
+    <MyButton>색상 안입혀져</MyButton>
+  );
 }
-
-Button.defaultProps = {
-  type: ButtonType.BUTTON,
-  theme: ButtonTheme.DEFAULT,
-  size: ButtonSize.MEDIUM,
-  onClick: () => {},
-  className: '',
-  disabled: false,
-}
-
-export default Button
