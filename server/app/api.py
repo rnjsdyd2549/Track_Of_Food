@@ -1,7 +1,8 @@
 from flask_restful import Resource, abort
-from flask import request, jsonify, json
+from flask import request, jsonify
 from .api_schema import *
 from .models import Food, Track
+from geopy import distance
 import math
 
 '''
@@ -14,36 +15,21 @@ track_input_api_schema = TrackInputApiSchema()
 track_output_api_schema = TrackOutputApiSchema()
 
 
-'''
-class UserApi(Resource):
-    def get(self, district_name=None):
-        if not district_name:   # 입력이 들어오지 았을 때 처리
-            pass
-
-        district = District.query.filter(
-            District.name.like(f'{district_name}%')).all()
-
-        if not district:  # name에 해당하는 구가 없는 경우 처리 ex) 삵
-            pass
-
-        return district
-'''
-
-
 class FoodApi(Resource):
     def get(self):
         '''
         marshmallow schema로 get요청으로 받은 파라미터들이 정확한 형식으로 넘어왔는지 검증한다.
         아니라면 errors를 리턴한다.
         '''
-        errors = food_input_api_schema.validate(json.dump(request.args))
-        if errors:
-            return abort(400, str(errors))
+        try:
+            data = food_input_api_schema.load(request.args)
+        except:
+            return abort(400)
 
         '''
         정확한 요청이 넘어왔다면, 쿼리를 수행하고 리턴한다.
         '''
-        food_name = request.args.get('food_name')
+        food_name = data['food_name']
         search = f'%{food_name}%'
         food_list = Food.query.filter(Food.name.like(search)).all()
 
@@ -54,79 +40,83 @@ class FoodApi(Resource):
 
 class TrackApi(Resource):
     def get(self):
-        '''
-        marshmallow schema로 get요청으로 받은 파라미터들이 정확한 형식으로 넘어왔는지 검증한다.
-        아니라면 errors를 리턴한다.
-
-        errors = food_input_api_schema.validate(request.args)
-        if errors:
-            # error bundle 필요? return abort(400, str(errors))
-            return abort(400)
-        '''
-
-        togo_dist = request.args.get('togo_dist')
-        kcal = request.args.get('kcal')
-        user_lng = request.args.get('user_lng')
-        user_lat = request.args.get('user_lat')
 
         try:
-            togo_dist = float(togo_dist)
-            kcal = float(kcal)
-            user_lng = float(user_lng)
-            user_lat = float(user_lat)
+            data = track_input_api_schema.load(request.args.to_dict())
+            print(type(request.args), type(request.args.to_dict()))
+
+            walk_dist, jog_dist = data['walk_dist'], data['jog_dist']
+            need_more_workout = data['need_more_workout']
+            user_lng, user_lat = data['user_lng'], data['user_lat']
         except:
             return abort(400)
 
         '''
-        두 점 사이의 유클리드 거리 계산 함수 정의.
+        유저-산책로간 거리는 유저-산책로 시작점간 거리와 유저-산책로 끝점간 거리중 최소값으로 정의한다.
         '''
-        def distance(pos1, pos2):
-            return math.sqrt((pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2)
-
-        '''
-        유저 위치에서 가장가까운 산책로들을
-        가까운 순서대로 {limit}개 만큼 리스트로 리턴하는 함수 정의.
-        '''
-        def near_tracks(tracks, limit):
-            track_list = []
-
-            for track in tracks:
-                dist = min(
-                    distance((user_lng, user_lat),
-                             (track.coord_lng_s, track.coord_lat_s)),
-                    distance((user_lng, user_lat),
-                             (track.coord_lng_e, track.coord_lat_e))
-                )
-                track_list.append((dist, track.id))
-
-            track_list.sort()
-
-            return track_list[:limit]
+        def distance_to_track(user_pos, track_pos_s, track_pos_e):
+            dis = min(
+                distance.geodesic(user_pos, track_pos_s, ellipsoid='GRS-80').km,
+                distance.geodesic(user_pos, track_pos_e, ellipsoid='GRS-80').km
+            )
+            return dis
 
         '''
-        kcal이 0이상이면 권장량만큼 칼로리를 섭취하지 못한것을 의미한다.
-        그러므로, 가장가까운 5개의 초급코스를 추천한다.
-
-        그렇지 않을 경우, 운동해야하는 거리와 산책로 길이의 차이가 가장 작은 산책로를 우선으로 해서 5개를 추천한다.
+        need_more_workout 이 1 이면 유저가 칼로리를 더 소모해야 하는 상태
+        0이라면 오히려 칼로리를 더 섭취해야하는 상태이다.
         '''
-        if kcal >= 0:
-            track_list = []
-            tracks = Track.query.filter(Track.difficulty == '초급코스').all()
+        if need_more_workout:
+            walk_track_list = []
+            jog_track_list = []
+            tracks = Track.query.all()
 
-            for track in near_tracks(tracks, 5):
-                _track = Track.query.filter(Track.id == track[1]).first()
-                track_list.append(_track)
+            user_pos = (user_lat, user_lng)
+            '''
+            걸어야 하는 거리와 길이가 비슷한 산책로 중, 집에서 가까운것들 위주로 추천
+            '''
+            for track in sorted(tracks, key=lambda t: abs(t.length - walk_dist)):
+                track_pos_s = (track.coord_lat_s, track.coord_lng_s)
+                track_pos_e = (track.coord_lat_e, track.coord_lng_e)
+                if distance_to_track(user_pos, track_pos_s, track_pos_e) <= 5:
+                    walk_track_list.append(track)
+                    if len(walk_track_list) >= 5:
+                        break
 
-            result = track_output_api_schema.dump(track_list, many=True)
-            return jsonify({"track_list": result})
+            '''
+            조깅해야 하는 거리와 길이가 비슷한 산책로 중, 집에서 가까운것들 위주로 추천
+            '''
+            for track in sorted(tracks, key=lambda t: abs(t.length - jog_dist)):
+                track_pos_s = (track.coord_lat_s, track.coord_lng_s)
+                track_pos_e = (track.coord_lat_e, track.coord_lng_e)
+                if distance_to_track(user_pos, track_pos_s, track_pos_e) <= 5:
+                    jog_track_list.append(track)
+                    if len(jog_track_list) >= 5:
+                        break
+
+            '''
+            marshmallow와 jsonify를 통해서 return할 객체를 formatting(marshal)
+            '''
+            walk_result = track_output_api_schema.dump(walk_track_list, many=True)
+            jog_result = track_output_api_schema.dump(jog_track_list, many=True)
+            return jsonify({"walk_track_list": walk_result, "jog_track_list": jog_result})
 
         else:
             track_list = []
-            tracks = Track.query.all()
-            for track in near_tracks(tracks, 5):
-                _track = Track.query.filter(Track.id == track[1]).first()
-                track_list.append(_track)
+            tracks = Track.query.filter().all()
 
-            track_list.sort(key=lambda t: abs(t.length - togo_dist))
+            user_pos = (user_lat, user_lng)
+            '''
+            거리가 짧은 산책로들 중, 집에서 가까운것들 위주로 추천
+            '''
+            for track in sorted(tracks, key=lambda t: t.length):
+                track_pos_s = (track.coord_lat_s, track.coord_lng_s)
+                track_pos_e = (track.coord_lat_e, track.coord_lng_e)
+                if distance_to_track(user_pos, track_pos_s, track_pos_e) <= 10:
+                    track_list.append(track)
+                    if len(track_list) >= 5:
+                        break
+            '''
+            marshmallow와 jsonify를 통해서 return할 객체를 formatting(marshal)
+            '''
             result = track_output_api_schema.dump(track_list, many=True)
-            return jsonify({"track_list": result})
+            return jsonify({"walk_track_list": result, "jog_track_list": result})

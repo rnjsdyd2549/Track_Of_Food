@@ -1,8 +1,9 @@
-from app import db
+from app import db, create_app
 from app.models import Track, Food, District
 import csv
 import os
 
+create_app().app_context().push()
 
 db.drop_all()
 db.create_all()
