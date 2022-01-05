@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { size } from 'styled-theme'
 
-import { Title } from '../../'
-
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -27,7 +25,7 @@ const Header = (props) => {
   return (
     <Wrapper opaque reverse {...props}>
       <InnerWrapper>
-        <Title />
+        <h3>헤더란다</h3>
       </InnerWrapper>
     </Wrapper>
   )

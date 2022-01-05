@@ -7,10 +7,15 @@ import { BrowserRouter } from 'react-router-dom'
 import { basename } from './config'
 import App from './components/App'
 
+import UserInfoContext from './store/user-info-context'
+
 const renderApp = () => (
-  <BrowserRouter basename={basename}>
-    <App />
-  </BrowserRouter>
+  // 추가
+  <UserInfoContext>
+    <BrowserRouter basename={basename}>
+      <App />
+    </BrowserRouter>
+  </UserInfoContext>
 )
 
 const root = document.getElementById('app')
