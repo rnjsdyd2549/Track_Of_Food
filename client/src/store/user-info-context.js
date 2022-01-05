@@ -11,12 +11,12 @@ export const UserInfoContextStore = createContext();
 const UserInfoContext = (props) => {
 
     const [ name, setName ] = useState('홍길동'); // 유저 이름
-    const [ gender, setGender ] = useState(); // 유저 성별
-    const [ age, setAge ] = useState(); // 유저 나이
-    const [ location, setLocation ] = useState(); // 유저 위치
-    const [ height, setHeight ] = useState(); // 유저 키
-    const [ weight, setWeight ] = useState(); // 유저 몸무게
-    const [ activity, setActivity ] = useState(); // 유저 활동량
+    const [ gender, setGender ] = useState('남자'); // 유저 성별
+    const [ age, setAge ] = useState(0); // 유저 나이
+    const [ location, setLocation ] = useState('강남구'); // 유저 위치
+    const [ height, setHeight ] = useState(0); // 유저 키
+    const [ weight, setWeight ] = useState(0); // 유저 몸무게
+    const [ activity, setActivity ] = useState('많이 활동함'); // 유저 활동량
 
     //유저 정보를 하나의 객체로 만들어준다.
     const UserInfo = {

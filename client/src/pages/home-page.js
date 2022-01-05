@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <>
       {/* useContext 사용 */}
-      <h1>여기에 아톰 테스트해야지</h1>
+      <h1>HomePage</h1>
       <UserForm />
     </>
   )
