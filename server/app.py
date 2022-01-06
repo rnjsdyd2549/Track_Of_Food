@@ -14,9 +14,5 @@ db.init_app(app)
 
 # add api
 api = Api(app, catch_all_404s=True)
-api.add_resource(FoodApi, '/food')
-api.add_resource(TrackApi, '/track')
-
-# run
-if __name__ == '__main__':
-    app.run(debug=True)
+api.add_resource(FoodApi, '/api/food')
+api.add_resource(TrackApi, '/api/track')
