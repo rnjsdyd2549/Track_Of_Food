@@ -40,7 +40,7 @@ class FoodApi(Resource):
 
         result = food_output_api_schema.dump(food_list, many=True)
         # 이부분 프론트에서 유니코드를 한글로 다시 파싱가능하면 굳이 jsonify안해도됨(json.load()같은게 된다면)
-        return {'food_list': result}
+        return jsonify({'food_list': result})
 
 
 class TrackApi(Resource):
