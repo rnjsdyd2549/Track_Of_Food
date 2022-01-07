@@ -1,33 +1,13 @@
-import Axios from 'axios';
+import axios from 'axios';
 
-const axios = Axios.create({
+const api = axios.create({
     baseURL: process.env.REACT_APP_RESULT_API_HOST,
-    headers: { "Content-Type": "application/json" },
+    timeout: 30000,
+    headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+        "Accept": "application/json",
+    }
 });
-
-const api = {};
-
-api.getFoods = async({ foodName }) => {
-    const res = await axios.get("/food", {
-        params: { foodName }
-    });
-    if (Array.isArray(res?.data)) {
-        return res.data;
-    }
-    throw new Error(res?.data?.ERROR_REASON || "");
-};
-
-api.getTrails = async({ trailName }) => {
-    const res = await axios.get("/trail", {
-        params: { trailName }
-    });
-    if (Array.isArray(res?.data)) {
-        return res.data;
-    }
-    throw new Error(res?.data?.ERROR_REASON || "");
-};
-
-api.getFoods();
-api.getTrails();
 
 export default api;
