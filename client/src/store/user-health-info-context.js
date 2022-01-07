@@ -37,9 +37,7 @@ const UserHealthInfoProvider = ({ children }) => {
      * {props.children} : 자식 Component를 랜더링 하기위해 설정
      */
     return (
-        <UserHealthInfoContext.Provider value={value}>
-            {children}
-        </UserHealthInfoContext.Provider>
+        <UserHealthInfoContext.Provider value={value}>{children}</UserHealthInfoContext.Provider>
     );
 };
 

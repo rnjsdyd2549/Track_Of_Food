@@ -14,7 +14,6 @@ const UserForm = () => {
    <>
     <h2>유저 폼 context api 테스트</h2>
     <UserInfoConsumer>
-      
     {({ state, actions }) =>
         (
           <>
@@ -30,6 +29,8 @@ const UserForm = () => {
    </>
   )
 }
+
+export default UserForm;
 
 // const UserForm = () => {
 //   return (
@@ -53,7 +54,7 @@ const UserForm = () => {
 //   )
 // }
 
-export default UserForm;
+
 
 /*
 const context = useContext(UserInfoContext)

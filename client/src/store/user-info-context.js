@@ -40,13 +40,11 @@ const UserInfoProvider = ({ children }) => {
 
 
     return(
-        <UserInfoContext.Provider value={value}>
-            {children}
-        </UserInfoContext.Provider>
+        <UserInfoContext.Provider value={value}>{children}</UserInfoContext.Provider>
     );
 };
 
-const { Consumer: UserInfoConsumer } = UserInfoContext;
+const { Consumer:UserInfoConsumer } = UserInfoContext;
 
 export { UserInfoProvider, UserInfoConsumer };
 export default UserInfoContext;
