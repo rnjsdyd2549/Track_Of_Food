@@ -1,34 +1,38 @@
-import React from 'react'
-import styled from 'styled-components'
-import { size } from 'styled-theme'
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-  @media screen and (max-width: 640px) {
-    padding: 0.5rem;
-  }
-`
 
-const InnerWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: ${size('maxWidth')};
-  > :not(:first-child) {
-    margin-left: 1rem;
-  }
-`
-
-const Header = (props) => {
+export default function StickyHeader() {
   return (
-    <Wrapper opaque reverse {...props}>
-      <InnerWrapper>
-        <h3>헤더란다</h3>
-      </InnerWrapper>
-    </Wrapper>
-  )
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '0vh',
+      }}
+    >
+      <CssBaseline />
+      <Box
+        component="header"
+        sx={{
+          py: 2,
+          px: 1,
+          mt: 'auto',
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[200]
+              : theme.palette.grey[800],
+        }}
+      >
+        <Container >
+          <Typography variant="body1">
+            로고 들어가기
+          </Typography>
+        </Container>
+      </Box>
+    </Box>
+  );
 }
-
-export default Header

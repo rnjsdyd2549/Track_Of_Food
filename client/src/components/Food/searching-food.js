@@ -45,7 +45,7 @@ function Foods() {
         ))}
       </ul>
 
-      <button onclick={handleClick}>다시 불러오기</button>
+      <button onClick={handleClick}>다시 불러오기</button>
     </>
   )
 }
