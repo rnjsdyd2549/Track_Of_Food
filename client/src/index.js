@@ -8,16 +8,16 @@ import { basename } from './config'
 import App from './components/App'
 
 import { UserInfoProvider } from './store/user-info-context'
-import UserHealthInfoContext from './store/user-health-info-context'
+import { UserHealthInfoProvider } from './store/user-health-info-context'
 
 const renderApp = () => (
   // 추가
   <UserInfoProvider>
-    <UserHealthInfoContext>
+    <UserHealthInfoProvider>
       <BrowserRouter basename={basename}>
         <App />
       </BrowserRouter>
-    </UserHealthInfoContext>
+    </UserHealthInfoProvider>
   </UserInfoProvider>
 )
 

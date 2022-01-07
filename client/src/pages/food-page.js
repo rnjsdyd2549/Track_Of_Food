@@ -1,7 +1,6 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
-import React, { useContext } from "react";
+import React from "react";
 import { UserInfoConsumer } from "../store/user-info-context";
-import { UserHealthInfoConsumer } from "../store/user-health-info-context";
 
 const FoodPage = () => {
 
@@ -10,7 +9,6 @@ const FoodPage = () => {
     <>
     
       <h3>음식 페이지</h3>
-      {/* <h3>{userHealthContext.calorie}</h3> */}
       <UserInfoConsumer>
       {({state}) => (
         <>
