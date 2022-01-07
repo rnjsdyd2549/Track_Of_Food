@@ -2,7 +2,7 @@ db = {
     'user': 'root',
     'password': '1234',
     'host': 'localhost',
-    'database': 'dbs'
+    'database': 'db'
 }
 
 SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{db['user']}:{db['password']}@{db['host']}/{db['database']}?charset=utf8mb4"

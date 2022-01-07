@@ -9,9 +9,9 @@ app.app_context().push()
 db.drop_all()
 db.create_all()
 
-data_path = os.path.dirname(os.getcwd()) + '/data/'
+#data_path = os.path.dirname(os.getcwd()) + '/data/'
 
-with open(data_path + 'track.csv', 'r') as f:
+with open('track.csv', 'r') as f:
     reader = csv.DictReader(f)
     for row in reader:
         track = Track(
@@ -33,7 +33,7 @@ with open(data_path + 'track.csv', 'r') as f:
     db.session.commit()
 
 
-with open(data_path + 'food.csv', 'r') as f:
+with open('food.csv', 'r') as f:
     reader = csv.DictReader(f)
     for row in reader:
         food = Food(
