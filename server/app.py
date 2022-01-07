@@ -1,12 +1,18 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 
 from models import db
 from api import FoodApi, TrackApi
 import config
 
-# flask app
+#flask_cors 사용
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
+#flask_cors 사용
+CORS(app)
+
 app.config.from_object(config)
 
 # orm
