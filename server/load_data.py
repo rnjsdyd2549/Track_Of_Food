@@ -11,7 +11,7 @@ db.create_all()
 
 data_path = os.path.dirname(os.getcwd()) + '/data/'
 
-with open(data_path + 'track.csv', 'r') as f:
+with open(data_path + 'track.csv', 'rt', encoding='UTF8') as f:
     reader = csv.DictReader(f)
     for row in reader:
         track = Track(
@@ -33,7 +33,7 @@ with open(data_path + 'track.csv', 'r') as f:
     db.session.commit()
 
 
-with open(data_path + 'food.csv', 'r') as f:
+with open(data_path + 'food.csv', 'rt', encoding='UTF8') as f:
     reader = csv.DictReader(f)
     for row in reader:
         food = Food(

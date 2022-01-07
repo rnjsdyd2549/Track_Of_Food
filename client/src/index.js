@@ -7,18 +7,18 @@ import { BrowserRouter } from 'react-router-dom'
 import { basename } from './config'
 import App from './components/App'
 
-import UserInfoContext from './store/user-info-context'
-import UserHealthInfoContext from './store/user-health-info-context'
+import { UserInfoProvider } from './store/user-info-context'
+import { UserHealthInfoProvider } from './store/user-health-info-context'
 
 const renderApp = () => (
   // 추가
-  <UserInfoContext>
-    <UserHealthInfoContext>
+  <UserInfoProvider>
+    <UserHealthInfoProvider>
       <BrowserRouter basename={basename}>
         <App />
       </BrowserRouter>
-    </UserHealthInfoContext>
-  </UserInfoContext>
+    </UserHealthInfoProvider>
+  </UserInfoProvider>
 )
 
 const root = document.getElementById('app')
