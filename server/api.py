@@ -112,7 +112,7 @@ class TrackApi(Resource):
 
             walk_result = track_output_api_schema.dump(walk_track_list, many=True)
             jog_result = track_output_api_schema.dump(jog_track_list, many=True)
-            return jsonify({"walk_track_list": walk_result, "jog_track_list": jog_result})
+            return {"walk_track_list": walk_result, "jog_track_list": jog_result}
 
         else:
             track_list = []
@@ -139,4 +139,4 @@ class TrackApi(Resource):
             '''
 
             result = track_output_api_schema.dump(track_list, many=True)
-            return jsonify({"walk_track_list": result, "jog_track_list": result})
+            return {"walk_track_list": result, "jog_track_list": result}
