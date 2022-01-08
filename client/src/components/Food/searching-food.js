@@ -17,32 +17,15 @@ function Foods() {
     searchFoods(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
-  /*
-  async function handleChange(e) {
-    setQuery(e.target.value)
-    if (timer) {
-      console.log('clear timer');
-      clearTimeout(timer);
-    }
-    const newTimer = setTimeout(async () => {
-      const res = await api.get(`/api/food?food_name=${query}`);
-      setFoods(res.data['food_list']);
-    }, 800);
-    setTimer(newTimer);
-  }
-  */
-
   const handleClick = () => { // button click 시 food-cart의 음식 카드들을 다시 그려주는 함수
 
   }
-
 
   return (
     <>
       <br />
       <input value={searchTerm} onChange={(e) => { setSearchTerm(e.target.value) }} />
       <ul>
-
         {
           foods.slice(0, 5).map(food => (
             <li key={food.id}>
@@ -50,9 +33,7 @@ function Foods() {
             </li>
           ))
         }
-
       </ul>
-
       <button onClick={handleClick}>다시 불러오기</button>
     </>
   )

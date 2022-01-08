@@ -1,15 +1,41 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react';
-import Foods from '../components/Food/searching-food';
+import IntroService from '../components/Landing/intorductory-service';
+import {
+  Paper,
+  Box,
+  Grid,
+  CssBaseline,
+  createTheme,
+  ThemeProvider
+} from '@mui/material';
 import UserForm from '../components/Landing/user-form';
+import IntroService00 from '../components/Landing/intro00';
+
+const theme = createTheme();
 
 const HomePage = () => {
   return (
     <>
-      {/* useContext 사용 */}
-      <h1>HomePage</h1>
-      <UserForm />
-      <Foods />
+      <ThemeProvider theme={theme}>
+        <Grid container component="main" sx={{ height: '100vh' }}>
+          <CssBaseline />
+          {/* <IntroService /> */}
+          <IntroService00 />
+          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <UserForm />
+            </Box>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     </>
   )
 }
