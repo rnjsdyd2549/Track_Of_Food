@@ -44,7 +44,7 @@ function Foods() {
       <ul>
 
         {
-          foods.map(food => (
+          foods.slice(0, 5).map(food => (
             <li key={food.id}>
               {food.name} ({food.kcal})
             </li>
