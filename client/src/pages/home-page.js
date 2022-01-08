@@ -1,5 +1,4 @@
 import React from 'react';
-import IntroService from '../components/Landing/intorductory-service';
 import {
   Paper,
   Box,

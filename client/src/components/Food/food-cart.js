@@ -67,7 +67,7 @@ const FoodCart = () => {
                         alignItems: 'center',
                     }}
                     >
-                        <Typography align="center" sx={{pb : 1}} component="h1" variant="h3">
+                        <Typography align="center" sx={{pb : 1}} component="h1" variant="h4">
                             담은 음식들
                         </Typography>
 
