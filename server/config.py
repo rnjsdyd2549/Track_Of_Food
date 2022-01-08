@@ -1,11 +1,16 @@
-db = {
+dbconf = {
     'user': 'root',
-    'password': '1234',
-    'host': 'localhost',
+    'password': 'pass',
+    'endpoint': 'db',
+    'port': '3306',
     'database': 'db',
-    'port' : '3308'
 }
 
-SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['database']}?charset=utf8"
+SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{dbconf['user']}:{dbconf['password']}@{dbconf['endpoint']}/{dbconf['database']}"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 JSON_AS_ASCII = False
+
+
+def createuri():  # for load_data.py only
+    dbconf['endpoint'] = 'localhost'
+    return f"mysql+pymysql://{dbconf['user']}:{dbconf['password']}@{dbconf['endpoint']}/{dbconf['database']}"
