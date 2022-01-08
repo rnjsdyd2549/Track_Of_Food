@@ -1,17 +1,18 @@
-import os
 import csv
 
 from models import Track, Food
 from app import app, db
+from config import createuri
+
+app.config['SQLALCHEMY_DATABASE_URI'] = createuri()
 
 app.app_context().push()
 
 db.drop_all()
 db.create_all()
 
-data_path = os.path.dirname(os.getcwd()) + '/data/'
 
-with open(data_path + 'track.csv', 'r') as f:
+with open('track.csv', 'r') as f:
     reader = csv.DictReader(f)
     for row in reader:
         track = Track(
@@ -33,7 +34,7 @@ with open(data_path + 'track.csv', 'r') as f:
     db.session.commit()
 
 
-with open(data_path + 'food.csv', 'r') as f:
+with open('food.csv', 'r') as f:
     reader = csv.DictReader(f)
     for row in reader:
         food = Food(
@@ -47,25 +48,3 @@ with open(data_path + 'food.csv', 'r') as f:
         )
         db.session.add(food)
     db.session.commit()
-
-'''
-with open(data_path + 'district.csv', 'r') as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        district = District(
-            id=row['id'],
-            name=row['name']
-        )
-        db.session.add(district)
-    db.session.commit()
-
-
-
-df = pd.read_csv(data_path + 'track.csv', sep=',', encoding='utf-8-sig')  # Replace Excel_file_name with your excel sheet name
-#df = df.astype({'id': str, 'name': str, 'address': str, })
-df.to_sql('track', con=engine, schema=db.metadata, index=False, if_exists='replace')  # Replace Table_name with your sql table name
-
-df = pd.read_csv(data_path + 'food.csv', sep=',', encoding='utf-8-sig')  # Replace Excel_file_name with your excel sheet name
-print(df)
-df.to_sql('food', con=engine, schema=db.metadata, index=False, if_exists='replace')  # Replace Table_name with your sql table name
-'''

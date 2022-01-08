@@ -30,13 +30,6 @@ class Food(db.Model):
 
 
 '''
-
-class District(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(4))
-
-
-
 Track
 ----------------------------------
 name: 산책로 이름
@@ -61,9 +54,4 @@ protein: 단백질 함량
 fat: 지방 함량
 kcal: 칼로리
 --------------------
-
-District
----------------------------------
-name: 서울시 내 구 (행정구역) 이름
----------------------------------
 '''
