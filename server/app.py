@@ -6,11 +6,11 @@ from models import db
 from api import FoodApi, TrackApi
 import config
 
-#flask_cors 사용
-from flask_cors import CORS, cross_origin
+# flask_cors 사용
+from flask_cors import CORS
 
 app = Flask(__name__)
-#flask_cors 사용
+# flask_cors 사용
 CORS(app)
 
 app.config.from_object(config)

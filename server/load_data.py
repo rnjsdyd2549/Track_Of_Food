@@ -1,4 +1,3 @@
-import os
 import csv
 
 from models import Track, Food

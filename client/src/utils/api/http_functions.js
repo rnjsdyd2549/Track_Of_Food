@@ -1,13 +1,21 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_RESULT_API_HOST,
-    timeout: 30000,
+    baseURL: 'http://127.0.0.1:5000',
+    withCredentials: '',
     headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "*",
-        "Accept": "application/json",
-    }
+        'Access-Control-Allow-Origin': true,
+    },
 });
+
+export async function foodApi(query) {
+    const res = await api.get(`/api/food?food_name=${query}`)
+    return res
+}
+
+export async function trackApi(walk_dist, jog_dist, need_more_work, user_lng, user_lat) {
+    const res = await api.get(`/api/track?walk_dist=${walk_dist}&jog_dist=${jog_dist}&need_more_work=${need_more_work}&user_lng=${user_lng}&user_lat=${user_lat}`)
+    return res
+}
 
 export default api;

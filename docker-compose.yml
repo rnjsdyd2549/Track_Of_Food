@@ -8,15 +8,14 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
     ports:
       - "3306:3306"
-
   server:
     container_name: server
     build:
       context: ./server
       dockerfile: Dockerfile
     image: server-app
-    depends_on:
-      - db
+    ports:
+      - "5000:5000"
 
   client:
     container_name: client
@@ -26,5 +25,3 @@ services:
     image: client-app
     ports:
       - "3000:80"
-    depends_on:
-      - server
