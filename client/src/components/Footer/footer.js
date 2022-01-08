@@ -6,13 +6,13 @@ import Container from '@mui/material/Container';
 import Copyright from './copyright';
 
 
-export default function StickyFooter() {
+export default function Footer() {
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh',
+        minHeight: '20vh',
       }}
     >
       <CssBaseline />

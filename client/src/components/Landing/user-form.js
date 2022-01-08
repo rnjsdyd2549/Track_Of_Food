@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserInfoConsumer } from "../../store/user-info-context";
+import UserInfoConfirmModal from "./user-info-modal";
 import {
   Avatar,
   Button,
@@ -86,7 +87,6 @@ const UserForm = () => {
 
   return (
    <>
-    <h2>유저 폼 context api 테스트</h2>
     <UserInfoConsumer>
     {({ state, actions }) =>
         (
@@ -103,12 +103,15 @@ const UserForm = () => {
                     alignItems: 'center',
                   }}
                 >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
                   <PersonRoundedIcon />
                 </Avatar>
 
-                <Typography component="h1" variant="h5">
+                <Typography align="center" sx={{pb : 1}} component="h1" variant="h4">
                   정보 입력
+                </Typography>
+                <Typography align="center" component="h4" variant="subtitle1">
+                  검사를 위한 필수 정보들을 입력해주세요.
                 </Typography>
 
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -222,26 +225,18 @@ const UserForm = () => {
                     </option>
                   ))}
                 </TextField>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={onClick}
-                >
-                  음식 고르러가기
-                </Button>
+                <UserInfoConfirmModal />
                 <Copyright sx={{ mt: 5 }} />
                 </Box>
                 </Box>
               </Grid>
 
-              <h3>이름 : {state.name}</h3>
+              {/* <h3>이름 : {state.name}</h3>
               <h3>성별 : {state.gender}</h3>
               <h3>나이 : {state.age}</h3>
               <h3>키 : {state.height}</h3>
               <h3>몸무게 : {state.weight}</h3>
-              <h3>활동량 : {state.activity}</h3>
+              <h3>활동량 : {state.activity}</h3> */}
 
             </ThemeProvider>
           </>

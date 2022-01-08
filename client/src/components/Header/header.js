@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 
-export default function StickyHeader() {
+export default function Header() {
   return (
     <Box
       sx={{

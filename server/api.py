@@ -34,14 +34,13 @@ class FoodApi(Resource):
         try:
             food_name = data['food_name']
             search = f'%{food_name}%'
-            food_list = Food.query.filter(Food.name.like(search)).all()
+            food_list = Food.query.filter(Food.name.like(search)).all() if food_name else []
         except:
             return abort(500)
 
         result = food_output_api_schema.dump(food_list, many=True)
         # 이부분 프론트에서 유니코드를 한글로 다시 파싱가능하면 굳이 jsonify안해도됨(json.load()같은게 된다면)
-        return {'food_list': result}
-
+        return jsonify({'food_list': result})
 
 class TrackApi(Resource):
     def get(self):
