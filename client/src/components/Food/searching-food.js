@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import api from '../../utils/api/http_functions';
 import useDebounce from './debounce';
@@ -8,7 +9,7 @@ function Foods() {
   const debouncedSearchTerm = useDebounce(searchTerm, 800);
 
   const searchFoods = async (search) => {
-    const res = await api.get(`/api/food?food_name=${search}`);
+    const res = await axios.get(`/api/food?food_name=${search}`);
     setFoods(res.data['food_list']);
   };
 

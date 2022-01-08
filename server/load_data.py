@@ -2,6 +2,9 @@ import csv
 
 from models import Track, Food
 from app import app, db
+from config import createuri
+
+app.config['SQLALCHEMY_DATABASE_URI'] = createuri()
 
 app.app_context().push()
 
