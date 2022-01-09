@@ -3,9 +3,40 @@
 - 먹은 배달음식 기반 산책로 추천 서비스
 
 
-## 프로젝트 구성 안내
+## 프로젝트 실행/배포 안내
 
+1. 프로젝트 디렉토리 복사
+`$ git clone {repository url}`
+2. docker 설치
+3. team10/(프로젝트 루트 디렉토리)에서 
+`$ docker-compose up`
+4. team10/server 디렉토리에서
+`$ pip install -r requirements.txt`
+`$ python3 load_data.py`
+5. 브라우저에서 localhost(:80 입력하지 않으면 기본포트)로 접속
+6. 가상머신에 배포 하는경우 도메인 설정 후 도메인으로 바로 접속
 
+```bash
+team10/client/ $ npm start  # 로컬에서 리액트 앱만 실행
+team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실행
+
+# 또는 각 디렉토리의 dockerfile로 docker image를 빌드해서 run 해도 가능
+```
+
+## 프로젝트 폴더구조 안내
+1. /client
+- CRA를 통한 리액트 폴더들
+- dockerfile
+- nginx config file
+
+2. /data
+- 데이터 분석 관련 파일
+
+3. /server
+- app.py => 메인 flask app
+- load_data.py => food.csv , track.csv 로부터 데이터를 읽어서 mysql에 저장
+- api.py => api 리소스
+- api_schema.py => marshamllow를 통한 입출력 데이터 검증과 포맷팅
 
 ## 1. 프로젝트 소개
 
