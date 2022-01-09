@@ -27,7 +27,7 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 #### /client
 - `/src`
 > 리액트 소스 파일
-- dockerfile
+- `dockerfile`
 > react + nginx 구동 docker container를 위한 dockerfile
 - `nginx.default.conf`
 > react + nginx docker container에서 사용되는 config file
