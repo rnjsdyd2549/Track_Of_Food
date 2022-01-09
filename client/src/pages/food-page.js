@@ -9,37 +9,29 @@ import {
   Grid,
   CssBaseline,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
+  Button
 } from '@mui/material';
 import FoodCart from "../components/Food/food-cart";
 
 const FoodPage = () => {
-  
+
   const theme = createTheme();
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-    <Header />
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-      
-      <FoodCart />
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Grid container component="main" sx={{ height: '100vh' }}>
+          <CssBaseline />
 
-
-      {/* <UserInfoConsumer>
-      {({state}) => (
-        <>
-          <h3>데이터 유지 테스트</h3>
-          <h3>이름 : {state.name}</h3>
-        </>
-      )}
-      </UserInfoConsumer> */}
-      </Grid>
-      <Footer />
+          <FoodCart />
+        </Grid>
+        <Button>제출</Button>
+        <Footer />
       </ThemeProvider>
     </>
   )
-} 
+}
 
 export default FoodPage
