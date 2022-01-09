@@ -1,6 +1,6 @@
-# 서비스명 : 트랙오브푸드
+# 서비스명 : 트랙오브푸드(Track-of-Food)
 
-- 배달음식으로 섭취한 칼로리 소비를 위한 산책로 추천 서비스
+- 사용자의 정보에 따라 도출한 권장 칼로리 및 영양정보와 비교하여 배달음식으로 얻은 칼로리를 소비하기 위한 위치 기반 서울시 내 산책로 추천 서비스
 
 
 ## 프로젝트 실행/배포 안내
@@ -74,6 +74,8 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 
 ## 4. 프로젝트 구성도
   - 와이어프레임/스토리보드 추가
+    - Web.ver 스토리보드 : https://ovenapp.io/project/nDR8LXuOBxzM97OCA17aqdh2ikziKPCF#KfZqC
+    - Mobile.ver 스토리보드 : https://ovenapp.io/project/W1SSHGyrohJqNe8WkTKkJ3A5M4Y7QmUc#bOwtA
 
 ## 5. 프로젝트 팀원 역할 분담
 | 이름 | 담당 업무 |
@@ -112,7 +114,7 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 
 
 ## 6. 버전
-  - 프로젝트의 버전 기입
+  - 1.0.0
 
 ## 7. FAQ
   - 자주 받는 질문 정리
