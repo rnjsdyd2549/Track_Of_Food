@@ -5,13 +5,13 @@
 
 ## 프로젝트 실행/배포 안내
 
-1. 프로젝트 디렉토리 복사
+1. 프로젝트 디렉토리 복사<br>
 `$ git clone {repository url}`
 2. docker 설치
-3. team10/(프로젝트 루트 디렉토리)에서 
+3. team10/(프로젝트 루트 디렉토리)에서<br>
 `$ docker-compose up`
-4. team10/server 디렉토리에서
-`$ pip install -r requirements.txt`
+4. team10/server 디렉토리에서<br>
+`$ pip install -r requirements.txt`<br>
 `$ python3 load_data.py`
 5. 브라우저에서 localhost(:80 입력하지 않으면 기본포트)로 접속
 6. 가상머신에 배포 하는경우 도메인 설정 후 도메인으로 바로 접속
@@ -24,15 +24,15 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 ```
 
 ## 프로젝트 폴더구조 안내
-1. /client
+#### 1. /client
 - CRA를 통한 리액트 폴더들
 - dockerfile
 - nginx config file
 
-2. /data
+#### 2. /data
 - 데이터 분석 관련 파일
 
-3. /server
+#### 3. /server
 - app.py => 메인 flask app
 - load_data.py => food.csv , track.csv 로부터 데이터를 읽어서 mysql에 저장
 - api.py => api 리소스
