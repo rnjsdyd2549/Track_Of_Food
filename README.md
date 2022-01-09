@@ -27,7 +27,8 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 #### /client
 - CRA를 통한 리액트 폴더들
 - dockerfile
-- nginx config file
+- `nginx.default.conf`
+> react + nginx docker container에서 사용되는 config file
 
 #### /data
 - 데이터 분석 관련 파일
