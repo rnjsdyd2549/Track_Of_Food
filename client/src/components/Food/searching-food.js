@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import api from '../../utils/api/http_functions';
+import Button from '@mui/material/Button';
 import useDebounce from './debounce';
+import { Chip, TextField } from '@mui/material';
+
+
 
 function Foods() {
   const [foods, setFoods] = useState([]); // api에서 가져올 음식 데이터
@@ -24,17 +27,7 @@ function Foods() {
   return (
     <>
       <br />
-      <input value={searchTerm} onChange={(e) => { setSearchTerm(e.target.value) }} />
-      <ul>
-        {
-          foods.slice(0, 5).map(food => (
-            <li key={food.id}>
-              {food.name} ({food.kcal})
-            </li>
-          ))
-        }
-      </ul>
-      <button onClick={handleClick}>다시 불러오기</button>
+
     </>
   )
 }
