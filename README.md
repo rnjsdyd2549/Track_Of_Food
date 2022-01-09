@@ -25,6 +25,7 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 
 ## 프로젝트 폴더구조 안내
 #### /client
+```
 $ tree
 .
 ├── dir1
@@ -37,6 +38,7 @@ $ tree
 ├── dir3
 ├── file_in_root.ext
 └── README.md
+```
 - `/src`
 > 리액트 소스 파일
 - `dockerfile`
