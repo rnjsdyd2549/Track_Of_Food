@@ -25,12 +25,18 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 
 ## 프로젝트 폴더구조 안내
 #### /client
-|-- data
-|   |-- train
-|   |--test
-|   |--validation
-
-
+$ tree
+.
+├── dir1
+│   ├── file11.ext
+│   └── file12.ext
+├── dir2
+│   ├── file21.ext
+│   ├── file22.ext
+│   └── file23.ext
+├── dir3
+├── file_in_root.ext
+└── README.md
 - `/src`
 > 리액트 소스 파일
 - `dockerfile`
@@ -60,11 +66,10 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 
 **어떠한 인공지능 모델과 알고리즘을 사용했는지에 대한 설명과 엔드유저에게 보이는 웹서비스에 대한 소개**
 
-  - 
   - 웹 기술스택 : `react + nginx + gunicorn + flask + docker + mysql`
   - 데이터분석 기술스택 : `colab + tableau`
   - 사용된 라이브러리 : `material-UI, axios, flask-restful, flask-cors, flask-sqlalchemy, marshmallow, pymysql, cryptography, geopy` 
-  - 코로나 시대 배달음식 섭취 증가, 운동 부족으로 인한 건강문제를 해결하기 위해 배달음식을 입력하면 해당 배달음식을 통해 섭취한 칼로리를 소비하기 적합한 산책로를 추천해주는 서비스
+  - 코로나 시대 배달음식 섭취 증가, 운동 부족으로 인한 건강문제를 해결하기 위해 배달음식을 입력하면 해당 배달음식을 통해 섭취한 칼로리를 사용자의 권장 칼로리와 비교하여 잉여 칼로리를 소비하기 적합한 산책로를 추천해주는 서비스
 
 ## 2. 프로젝트 목표
 
