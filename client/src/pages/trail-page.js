@@ -35,7 +35,7 @@ const TrailPage = () => {
                         }}
                     >
                         <Typography align="center" sx={{ pb: 1 }} component="h1" variant="h3">
-                            담은 음식들
+                            추천트랙
                         </Typography>
 
                         <Paper
@@ -52,10 +52,11 @@ const TrailPage = () => {
                         >
                             {tracks.map((track) => {
                                 return (
-                                    <ListItem key={track.id} sx={{ alignItems: 'center' }}>
+                                    <>
                                         <h3>{track.name}</h3>
                                         <h3>{track.address}</h3>
-                                    </ListItem>
+                                    </>
+
                                 );
                             })}
                         </Paper>
