@@ -25,8 +25,10 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 
 ## 프로젝트 폴더구조 안내
 #### /client
-- CRA를 통한 리액트 폴더들
+- `/src`
+> 리액트 소스 파일
 - dockerfile
+> react + nginx 구동 docker container를 위한 dockerfile
 - `nginx.default.conf`
 > react + nginx docker container에서 사용되는 config file
 
@@ -54,7 +56,7 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
   - 
   - 웹 기술스택 : `react + nginx + gunicorn + flask + docker + mysql`
   - 데이터분석 기술스택 : `colab + tableau`
-  - 사용된 라이브러리 : `material-UI, flask-restful, flask-cors, flask-sqlalchemy, marshmallow, pymysql, cryptography, geopy` 
+  - 사용된 라이브러리 : `material-UI, axios, flask-restful, flask-cors, flask-sqlalchemy, marshmallow, pymysql, cryptography, geopy` 
   - 코로나 시대 배달음식 섭취 증가, 운동 부족으로 인한 건강문제를 해결하기 위해 배달음식을 입력하면 해당 배달음식을 통해 섭취한 칼로리를 소비하기 적합한 산책로를 추천해주는 서비스
 
 ## 2. 프로젝트 목표
