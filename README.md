@@ -35,11 +35,16 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 #### /server
 - `app.py`         
 >  메인 flask app
-- `load_data.py`   # food.csv , track.csv 로부터 데이터를 읽어서 mysql에 저장
-- `api.py`         # api 리소스
-- `api_schema.py`  # marshamllow를 통한 입출력 데이터 검증과 포맷팅
-- `models.py`      # flask-sqlalchemy db models
-- `config.py`      # flask app config
+- `load_data.py`   
+>  food.csv , track.csv 로부터 데이터를 읽어서 mysql에 저장
+- `api.py`         
+>  api 리소스
+- `api_schema.py`  
+>  marshamllow를 통한 입출력 데이터 검증과 포맷팅
+- `models.py`      
+>  flask-sqlalchemy db models
+- `config.py`      
+>  flask app config
 
 ## 1. 프로젝트 소개
 
