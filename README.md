@@ -28,7 +28,6 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 $ Track-of-Food
 .
 ├── .gitlab
-├── .venv
 ├── client
 │   ├── node_modules
 │   ├── public
