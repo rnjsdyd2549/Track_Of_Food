@@ -59,8 +59,6 @@ $ Track-of-Food
 │   ├── district.csv
 │   └── example.csv
 ├── server
-│   ├── __pycache__
-│   ├── .venv
 │   ├── api_schema.py
 │   ├── api.py
 │   ├── app.py
