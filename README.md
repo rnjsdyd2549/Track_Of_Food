@@ -56,7 +56,6 @@ $ Track-of-Food
 │   ├── package.json
 │   └── README
 ├── data
-│   ├── district.csv
 │   └── example.csv
 ├── server
 │   ├── api_schema.py
