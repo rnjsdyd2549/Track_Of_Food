@@ -76,6 +76,10 @@ $ Track-of-Food
 └── README.md
 ```
 #### /client
+- `/node_modules`
+> React 프로젝트의 라이브러리가 저장되어 있음
+- `/public`
+> 브라우저상에 보이는 html파일과 이미지들이 저장되어 있음
 - `/src`
 > 리액트 소스 파일
 - `dockerfile`
