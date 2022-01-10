@@ -24,21 +24,58 @@ team10/server/ $ gunicorn -b 0.0.0.0:5000 app:app  # 로컬에서 서버만 실�
 ```
 
 ## 프로젝트 폴더구조 안내
-#### /client
 ```
-$ 작성중
+$ Track-of-Food
 .
-├── dir1
-│   ├── file11.ext
-│   └── file12.ext
-├── dir2
-│   ├── file21.ext
-│   ├── file22.ext
-│   └── file23.ext
-├── dir3
-├── file_in_root.ext
+├── .gitlab
+├── .venv
+├── client
+│   ├── node_modules
+│   ├── public
+│   ├── src
+│   │   └── components
+│   │   │   └── Landing
+│   │   │   └── Header
+│   │   │   └── Footer
+│   │   │   └── Food
+│   │   │   └── Trail
+│   │   │   └── themes
+│   │   │   └── App.js
+│   │   │   └── index.js
+│   │   └── pages
+│   │   └── store
+│   │   └── utiles
+│   │   └── .env
+│   │   └── cofig.js
+│   │   └── index.js
+│   │   └── logo.svg
+│   ├── .env
+│   ├── .gitignore
+│   ├── Dockerfile
+│   ├── nginx.default.conf
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README
+├── data
+│   ├── district.csv
+│   └── example.csv
+├── server
+│   ├── __pycache__
+│   ├── .venv
+│   ├── api_schema.py
+│   ├── api.py
+│   ├── app.py
+│   ├── config.py
+│   ├── load_data.py
+│   ├── models.py
+│   ├── Dockerfile
+│   ├── food.csv
+│   ├── track.csv
+│   └── requirements.txt
+├── docker-compose.yml
 └── README.md
 ```
+#### /client
 - `/src`
 > 리액트 소스 파일
 - `dockerfile`
