@@ -21,6 +21,7 @@ const renderApp = () => (
   </UserInfoProvider>
 )
 
+
 const root = document.getElementById('app')
 render(renderApp(), root)
 
