@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Header from "../components/Header/header";
 import Footer from "../components/Footer/footer";
 
-function HomePage() {
+export default function FoodPage() {
   const [open, setOpen] = useState(false);
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
@@ -87,38 +87,70 @@ function HomePage() {
       </Grid>
     </Grid>
   );
-}
+    }
 
-export default HomePage;
+// import {
+//   Paper,
+//   Box,
+//   Grid,
+//   CssBaseline,
+//   createTheme,
+//   ThemeProvider,
+//   Button
+// } from '@mui/material';
+// import FoodCart from "../components/Food/food-cart";
 
-function MobileMenu() {
-  return (
-    <Grid
-      container
-      direction="column"
-      xs={12}
-      sx={{
-        position: "absolute",
-        top: 64,
-        width: "60%",
-        backgroundColor: "yellowgreen"
-      }}
-    >
-      <Grid xs>
-        <Button sx={{ width: "100%" }}>menu</Button>
-      </Grid>
-      <Grid xs>
-        <Button sx={{ width: "100%" }}>menu</Button>
-      </Grid>
-      <Grid xs>
-        <Button sx={{ width: "100%" }}>menu</Button>
-      </Grid>
-      <Grid xs>
-        <Button sx={{ width: "100%" }}>menu</Button>
-      </Grid>
-      <Grid xs>
-        <Button sx={{ width: "100%" }}>menu</Button>
-      </Grid>
-    </Grid>
-  );
-}
+// const FoodPage = () => {
+
+//   const theme = createTheme();
+
+//   return (
+//     <>
+//       <ThemeProvider theme={theme}>
+//         <Header />
+//         <Grid container component="main" sx={{ height: '100vh' }}>
+//           <CssBaseline />
+
+//           <FoodCart />
+//         </Grid>
+//         <Button>제출</Button>
+//         <Footer />
+//       </ThemeProvider>
+//     </>
+//   )
+// >>>>>>> 5b2ef49c9d92a7befbcd40a31f18d8bfd2bec8c9
+// }
+
+// export default HomePage;
+
+// function MobileMenu() {
+//   return (
+//     <Grid
+//       container
+//       direction="column"
+//       xs={12}
+//       sx={{
+//         position: "absolute",
+//         top: 64,
+//         width: "60%",
+//         backgroundColor: "yellowgreen"
+//       }}
+//     >
+//       <Grid xs>
+//         <Button sx={{ width: "100%" }}>menu</Button>
+//       </Grid>
+//       <Grid xs>
+//         <Button sx={{ width: "100%" }}>menu</Button>
+//       </Grid>
+//       <Grid xs>
+//         <Button sx={{ width: "100%" }}>menu</Button>
+//       </Grid>
+//       <Grid xs>
+//         <Button sx={{ width: "100%" }}>menu</Button>
+//       </Grid>
+//       <Grid xs>
+//         <Button sx={{ width: "100%" }}>menu</Button>
+//       </Grid>
+//     </Grid>
+//   );
+// }
