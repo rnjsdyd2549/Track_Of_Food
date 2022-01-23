@@ -1,40 +1,27 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Copyright from './copyright';
 
 
 export default function Footer() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '20vh',
-      }}
-    >
-      <CssBaseline />
       <Box
         component="footer"
         sx={{
+          width: '100%',
+          height: '4rem',
           py: 3,
-          px: 2,
-          mt: 'auto',
+          align: 'center',
           backgroundColor: (theme) =>
             theme.palette.mode === 'light'
               ? theme.palette.grey[200]
               : theme.palette.grey[800],
         }}
       >
-        <Container maxWidth="sm">
-          <Typography variant="body1">
-            배달음식으로 나빠진 건강 찾기
-          </Typography>
+        <Container maxWidth="false">
           <Copyright />
         </Container>
       </Box>
-    </Box>
   );
 }

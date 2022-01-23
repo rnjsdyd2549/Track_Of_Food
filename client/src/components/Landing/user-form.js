@@ -4,7 +4,6 @@ import { UserInfoConsumer } from "../../store/user-info-context";
 import UserInfoConfirmModal from "./user-info-modal";
 import {
   Avatar,
-  Button,
   CssBaseline,
   TextField,
   Box,
@@ -92,32 +91,33 @@ const UserForm = () => {
       (
         <>
           <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-              <CssBaseline />
+            {/* <Grid container component="main01" sx={{margin: '50% auto'}}>
+              <CssBaseline /> */}
               <Box
                 sx={{
-                  my: 8,
-                  mx: 4,
+                  mx: 2,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                <Avatar sx={{ pb : 0.5, bgcolor: 'primary.main' }}>
                   <PersonRoundedIcon />
                 </Avatar>
-                <Typography align="center" sx={{ pb: 1 }} component="h1" variant="h4">
+                {/* <Typography align="center" sx={{ pt : 0.5}} component="h1" variant="h5"> */}
+                <Typography align="center" sx={{ pt : 0.5 }} variant="h5" >
                   정보 입력
                 </Typography>
-                <Typography align="center" component="h4" variant="subtitle1">
+                <Typography align="center" variant="subtitle1">
                   검사를 위한 필수 정보들을 입력해주세요.
                 </Typography>
 
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 0.5 }}>
                   <TextField
-                    margin="normal"
+                    margin="dense"
                     required
                     fullWidth
+                    size="small"
                     id="name"
                     label="이름"
                     name="name"
@@ -127,9 +127,10 @@ const UserForm = () => {
                   />
 
                   <TextField
-                    margin="normal"
+                    margin="dense"
                     required
                     fullWidth
+                    size="small"
                     name="gender"
                     label="성별"
                     id="gender"
@@ -159,9 +160,10 @@ const UserForm = () => {
                   </TextField>
 
                   <TextField
-                    margin="normal"
+                    margin="dense"
                     required
                     fullWidth
+                    size="small"
                     name="age"
                     label="나이"
                     type="number"
@@ -171,9 +173,10 @@ const UserForm = () => {
                   />
 
                   <TextField
-                    margin="normal"
+                    margin="dense"
                     required
                     fullWidth
+                    size="small"
                     name="height"
                     label="키"
                     type="number"
@@ -182,9 +185,10 @@ const UserForm = () => {
                     onChange={({ target: { value } }) => actions.setHeight(value)}
                   />
                   <TextField
-                    margin="normal"
+                    margin="dense"
                     required
                     fullWidth
+                    size="small"
                     name="weight"
                     label="몸무게"
                     type="number"
@@ -194,9 +198,10 @@ const UserForm = () => {
                   />
 
                   <TextField
-                    margin="normal"
+                    margin="dense"
                     required
                     fullWidth
+                    size="small"
                     name="activityLevel"
                     label="평소 활동량"
                     id="activityLevel"
@@ -225,10 +230,10 @@ const UserForm = () => {
                     ))}
                   </TextField>
                   <UserInfoConfirmModal />
-                  <Copyright sx={{ mt: 5 }} />
                 </Box>
+
               </Box>
-            </Grid>
+            {/* </Grid> */}
 
             {/*
                 <>

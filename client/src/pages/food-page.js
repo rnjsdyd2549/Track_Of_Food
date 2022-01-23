@@ -1,45 +1,124 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design
-import React from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Grid, CssBaseline, Hidden, IconButton, Box, Button } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import Header from "../components/Header/header";
-import { UserInfoConsumer } from "../store/user-info-context";
 import Footer from "../components/Footer/footer";
-import {
-  Paper,
-  Box,
-  Grid,
-  CssBaseline,
-  createTheme,
-  ThemeProvider
-} from '@mui/material';
-import FoodCart from "../components/Food/food-cart";
 
-const FoodPage = () => {
-  
-  const theme = createTheme();
+function HomePage() {
+  const [open, setOpen] = useState(false);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  const handleWindowResize = useCallback((event) => {
+    setWindowSize(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    windowSize >= 600 && setOpen(false);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowSize]);
 
   return (
-    <>
-    <ThemeProvider theme={theme}>
-    <Header />
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
+    <Grid container height="100vh" width="100%">
+      <CssBaseline />
+      {/* <Hidden smUp>
+        <Grid
+          xs={1}
+          minWidth="4rem"
+          backgroundColor="paleturquoise"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <IconButton onClick={() => setOpen(!open)}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <MenuIcon sx={{ width: '2rem', height: '2rem' }} />
+            </Box>
+          </IconButton>
+        </Grid>
+      </Hidden> */}
       
-      <FoodCart />
-
-
-      {/* <UserInfoConsumer>
-      {({state}) => (
-        <>
-          <h3>데이터 유지 테스트</h3>
-          <h3>이름 : {state.name}</h3>
-        </>
-      )}
-      </UserInfoConsumer> */}
+      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
+        <Header />
       </Grid>
-      <Footer />
-      </ThemeProvider>
-    </>
-  )
-} 
 
-export default FoodPage
+      <Hidden smUp>
+      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
+        <Header />
+      </Grid>
+      <Grid width="60vw" height={"100vh"} backgroundColor={"orange"} xs={12} sm>
+        구역1
+        </Grid>
+      </Hidden>
+
+      {/* {open && (
+        <Hidden smUp>
+          <MobileMenu />
+        </Hidden>
+      )} */}
+      {/* <Hidden smDown> */}
+      <Hidden smDown>
+        <Grid width="60vw" height={"calc(100vh - 8rem)"} backgroundColor={"orange"} xs={12} sm>
+          구역1
+        </Grid>
+      </Hidden>
+      {/* </Hidden> */}
+
+      <Grid backgroundColor="tomato" width="40vw" height="calc(100vh - 8rem)" xs={12} sm>
+        구역2
+      </Grid>
+      <Grid
+        xs
+        sm={12}
+        height="4rem"
+        backgroundColor="lightgray"
+      >
+       <Footer />
+      </Grid>
+    </Grid>
+  );
+}
+
+export default HomePage;
+
+function MobileMenu() {
+  return (
+    <Grid
+      container
+      direction="column"
+      xs={12}
+      sx={{
+        position: "absolute",
+        top: 64,
+        width: "60%",
+        backgroundColor: "yellowgreen"
+      }}
+    >
+      <Grid xs>
+        <Button sx={{ width: "100%" }}>menu</Button>
+      </Grid>
+      <Grid xs>
+        <Button sx={{ width: "100%" }}>menu</Button>
+      </Grid>
+      <Grid xs>
+        <Button sx={{ width: "100%" }}>menu</Button>
+      </Grid>
+      <Grid xs>
+        <Button sx={{ width: "100%" }}>menu</Button>
+      </Grid>
+      <Grid xs>
+        <Button sx={{ width: "100%" }}>menu</Button>
+      </Grid>
+    </Grid>
+  );
+}

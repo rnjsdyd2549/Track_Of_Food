@@ -77,7 +77,7 @@ export default function UserInfoConfirmModal() {
                 size="large"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 2, mb: 2 }}
                 onClick={handleClickOpen}
               >
                 음식 고르러가기
