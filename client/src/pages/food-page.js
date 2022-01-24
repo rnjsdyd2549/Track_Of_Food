@@ -3,6 +3,9 @@ import { Grid, CssBaseline, Hidden, IconButton, Box, Button } from "@mui/materia
 import MenuIcon from "@mui/icons-material/Menu";
 import Header from "../components/Header/header";
 import Footer from "../components/Footer/footer";
+import Search from "../components/Food/Search";
+import ShowCalories from "../components/Food/show-calories";
+
 
 export default function FoodPage() {
   const [open, setOpen] = useState(false);
@@ -57,8 +60,9 @@ export default function FoodPage() {
         <Header />
       </Grid>
       <Grid width="60vw" height={"100vh"} backgroundColor={"orange"} xs={12} sm>
-        구역1
-        </Grid>
+        <Search />
+        <ShowCalories />
+      </Grid>
       </Hidden>
 
       {/* {open && (
@@ -68,13 +72,14 @@ export default function FoodPage() {
       )} */}
       {/* <Hidden smDown> */}
       <Hidden smDown>
-        <Grid width="60vw" height={"calc(100vh - 8rem)"} backgroundColor={"orange"} xs={12} sm>
-          구역1
+        <Grid height={"calc(100vh - 8rem)"} backgroundColor={"orange"} xs={12} sm>
+          <Search />
+          <ShowCalories />
         </Grid>
       </Hidden>
       {/* </Hidden> */}
 
-      <Grid backgroundColor="tomato" width="40vw" height="calc(100vh - 8rem)" xs={12} sm>
+      <Grid backgroundColor="tomato" height="calc(100vh - 8rem)" xs={12} sm>
         구역2
       </Grid>
       <Grid
