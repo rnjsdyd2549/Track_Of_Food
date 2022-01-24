@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Grid, CssBaseline, Hidden, IconButton, Box, Button } from "@mui/material";
+import { Grid, CssBaseline, Hidden, IconButton, Box, Button, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Header from "../components/Header/header";
 import Footer from "../components/Footer/footer";
 import Search from "../components/Food/Search";
 import ShowCalories from "../components/Food/show-calories";
-
+import FoodList from "../components/Food/food-list";
+import { Typography } from "@material-ui/core";
+import FoodCart from "../components/Food/food-cart";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function FoodPage() {
   const [open, setOpen] = useState(false);
@@ -26,9 +29,15 @@ export default function FoodPage() {
   return (
     <Grid container height="100vh" width="100%">
       <CssBaseline />
-      {/* <Hidden smUp>
+      {/* 모바일용, 나중에 화면 변경되면 검색창 헤더 옆에 붙여버리기 */}
+      <Hidden smUp>
+      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={9}>
+        <Header />
+      </Grid>
+
         <Grid
           xs={1}
+          sm={3}
           minWidth="4rem"
           backgroundColor="paleturquoise"
           sx={{
@@ -42,28 +51,39 @@ export default function FoodPage() {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                position: 'fixed'
               }}
             >
-              <MenuIcon sx={{ width: '2rem', height: '2rem' }} />
+              <SearchIcon sx={{ width: '2rem', height: '2rem' }} />
             </Box>
           </IconButton>
         </Grid>
-      </Hidden> */}
-      
-      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
-        <Header />
-      </Grid>
+        
+        <Grid width="60vw" height={"100vh"} backgroundColor={"orange"} xs={12} sm>
+        <ShowCalories />
+        <FoodList />
+        </Grid>
+        
+      </Hidden>
 
-      <Hidden smUp>
+      {/* 여기 위는 모바일용 */}
+      
+      {/* <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
+        <Header />
+      </Grid> */}
+
+      {/* 아이콘없이 모바일만 구기기 */}
+      {/* <Hidden smUp>
       <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
         <Header />
       </Grid>
       <Grid width="60vw" height={"100vh"} backgroundColor={"orange"} xs={12} sm>
         <Search />
         <ShowCalories />
+        <FoodList />
       </Grid>
-      </Hidden>
+      </Hidden> */}
 
       {/* {open && (
         <Hidden smUp>
@@ -71,17 +91,26 @@ export default function FoodPage() {
         </Hidden>
       )} */}
       {/* <Hidden smDown> */}
+      {/* 구역1 */}
+
       <Hidden smDown>
+      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
+        <Header />
+      </Grid>
         <Grid height={"calc(100vh - 8rem)"} backgroundColor={"orange"} xs={12} sm>
           <Search />
           <ShowCalories />
+          <FoodList />
         </Grid>
       </Hidden>
       {/* </Hidden> */}
 
+
       <Grid backgroundColor="tomato" height="calc(100vh - 8rem)" xs={12} sm>
-        구역2
+        <FoodCart />
       </Grid>
+
+
       <Grid
         xs
         sm={12}

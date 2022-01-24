@@ -9,13 +9,13 @@ import Typography from '@material-ui/core/Typography';
 export default function OutlinedCard() {
 
   return (
-    <Card sx={{ minWidth: '80' }} variant="outlined">
+    <Card minWidth='10' variant="outlined">
       <CardContent>
         <Typography component="h6">
           탄수화물
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning
+          NN g
         </Typography>
       </CardContent>
     </Card>
