@@ -35,7 +35,7 @@ const Map = () => {
   // 지도를 담기위한 영역
   return (
     <div id='map' style={{
-      width: '500px', height: '500px'
+      width: '100%', height: '25rem'
     }}>
     </div>
   )

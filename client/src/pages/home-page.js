@@ -34,7 +34,7 @@ function HomePage() {
       </Grid>
       <Grid width="60vw" height={"100vh"} backgroundColor={"orange"} xs={12} sm>
         <IntroService00 />
-        </Grid>
+      </Grid>
       </Hidden>
       
       {/* {open && (
@@ -49,7 +49,7 @@ function HomePage() {
       </Hidden>
 
       <Grid backgroundColor="tomato" width="40vw" height="calc(100vh - 8rem)" xs={12} sm>
-        <Container sx={{ margin: '5% auto' }}>
+        <Container sx={{ margin: '3% auto' }}>
           <UserForm />
         </Container> 
       </Grid>

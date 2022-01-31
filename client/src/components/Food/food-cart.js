@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import CalculateCalConfirmModal from './calculate-cal-modal'
 
 export default function MiddleDividers() {
     return (
@@ -15,7 +16,7 @@ export default function MiddleDividers() {
                     담은 음식들
                 </Typography>
 
-                <Box sx={{ mb: 2 }} backgroundColor="pink" width='100%' height='40vh'>
+                <Box sx={{ mb: 2 }} backgroundColor="pink" width='100%' height='30vh'>
                     채워저라 얍
                 </Box>
 
@@ -23,7 +24,7 @@ export default function MiddleDividers() {
 
             <Divider variant="middle" />
 
-            <Box sx={{ mx: 2, my: 2 }}>
+            <Box sx={{ mx: 2, my: 1 }}>
 
                 <Grid container alignItems="center">
                     <Grid item xs>
@@ -93,6 +94,10 @@ export default function MiddleDividers() {
             </Box>
 
             <Box alignItems={'center'} sx={{ mt: 1, ml: 1, mb: 1 }}>
+                <CalculateCalConfirmModal />
+            </Box>
+
+            {/* <Box alignItems={'center'} sx={{ mt: 1, ml: 1, mb: 1 }}>
                 <Button
                     type="submit"
                     size="large"
@@ -102,7 +107,7 @@ export default function MiddleDividers() {
                 >
                     산책로 보러가기
                 </Button>
-            </Box>
+            </Box> */}
         </Box>
     );
 }

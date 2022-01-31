@@ -5,15 +5,15 @@ import Carousel from "react-elastic-carousel";
 import Item from "./item";
 
 
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 }
-];
+// const breakPoints = [
+//   { width: 1, itemsToShow: 1 },
+//   { width: 550, itemsToShow: 1},
+//   { width: 768, itemsToShow: 1 },
+//   { width: 1200, itemsToShow: 1 }
+// ];
 
 export default function CarouselSlide() {
-  const [items, setItems] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+  const [items, setItems] = useState([1, 2, 3, 4, 5]);
 
   return (
     <>
@@ -23,11 +23,11 @@ export default function CarouselSlide() {
             showArrows={false}
             enableAutoPlay={true}
             autoPlaySpeed={7000}
-            breakPoints={breakPoints}
+            // breakPoints={breakPoints}
         >
           {items.map((item) => (
             // <Item key={item}>{item}</Item>
-            <Card sx={{width: '100vw', height:'70vh'}}>{item}</Card>
+            <Card sx={{width: '100%', height:'62vh'}}>{item}</Card>
           ))}
 
         </Carousel>

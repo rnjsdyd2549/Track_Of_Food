@@ -3,7 +3,7 @@ import { Grid, CssBaseline, Hidden, IconButton, Box, Button, Divider } from "@mu
 import MenuIcon from "@mui/icons-material/Menu";
 import Header from "../components/Header/header";
 import Footer from "../components/Footer/footer";
-import Search from "../components/Food/Search";
+import Search from "../components/Food/search";
 import ShowCalories from "../components/Food/show-calories";
 import FoodList from "../components/Food/food-list";
 import { Typography } from "@material-ui/core";

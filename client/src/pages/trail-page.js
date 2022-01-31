@@ -1,70 +1,70 @@
-import { ThemeProvider } from '@emotion/react';
-import { CssBaseline, Grid, ListItem, Paper, Typography } from '@mui/material';
-import { Box, createTheme } from '@mui/system';
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import Foods from '../components/Food/searching-food';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Grid, CssBaseline, Hidden, IconButton, Box, Button, Container } from "@mui/material";
 import UserForm from '../components/Landing/user-form';
+import Header from "../components/Header/header";
+import Footer from "../components/Footer/footer";
+import IntroService00 from "../components/Landing/intro00";
+import BasicTabs from "../components/Trail/select-trail";
+import TrailDetail from "../components/Trail/trail-detail";
 
-const TrailPage = () => {
+function TrailPage() {
+  const [open, setOpen] = useState(false);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
-    const [tracks, setTracks] = useState([]); // api에서 가져올 음식 데이터
+  const handleWindowResize = useCallback((event) => {
+    setWindowSize(window.innerWidth);
+  }, []);
 
-    const searchTracks = async () => {
-        const res = await axios.get(`/api/track?walk_dist=1.2&jog_dist=1.2&need_more_workout=0&user_lng=126.9997043&user_lat=37.58217`);
-        setTracks(res.data['walk_list']);
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    windowSize >= 600 && setOpen(false);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
     };
+  }, [windowSize]);
 
-    useEffect(() => {
-        searchTracks();
-    }, []);
-    const theme = createTheme();
+  return (
+    <Grid container height="100vh" width="100%">
+      <CssBaseline />
+      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
+        <Header />
+      </Grid>
 
-    return (
-        <>
-            <ThemeProvider theme={theme}>
-                <Grid container component="main" sx={{ height: '100vh' }}>
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            my: 8,
-                            mx: 4,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Typography align="center" sx={{ pb: 1 }} component="h1" variant="h3">
-                            추천트랙
-                        </Typography>
+      <Hidden smUp>
+      <Grid height={"4rem"} backgroundColor={"lightgray"} xs sm={12}>
+        <Header />
+      </Grid>
+      <Grid width="60vw" height={"100vh"} backgroundColor={"orange"} xs={12} sm>
+        <BasicTabs />
+      </Grid>
+      </Hidden>
+      
+      {/* {open && (
+        <Hidden smUp>
+          <MobileMenu />
+        </Hidden>
+      )} */}
+      <Hidden smDown>
+        <Grid width="60vw" height={"calc(100vh - 8rem)"} backgroundColor={"orange"} xs={12} sm>
+        <BasicTabs />
+        </Grid>
+      </Hidden>
 
-                        <Paper
-                            sx={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                flexWrap: 'wrap',
-                                listStyle: 'none',
-                                p: 0.5,
-                                m: 0,
-                                alignItems: 'center'
-                            }}
-                            component="ul"
-                        >
-                            {tracks.map((track) => {
-                                return (
-                                    <>
-                                        <h3>{track.name}</h3>
-                                        <h3>{track.address}</h3>
-                                    </>
-
-                                );
-                            })}
-                        </Paper>
-                    </Box>
-                </Grid>
-            </ThemeProvider>
-        </>
-    )
+      <Grid backgroundColor="tomato" width="40vw" height="calc(100vh - 8rem)" xs={12} sm>
+        <Container sx={{ margin: '5% auto' }}>
+          <TrailDetail />
+        </Container> 
+      </Grid>
+      <Grid
+        xs
+        sm={12}
+        height="4rem"
+        backgroundColor="lightgray"
+      >
+       <Footer />
+      </Grid>
+    </Grid>
+  );
 }
 
-export default TrailPage
+export default TrailPage;
