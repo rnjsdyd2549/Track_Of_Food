@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 import { TextField } from '@mui/material';
-import OutlinedCard from "./card";
+import NutritionCard from "./nutrition-card";
 import { Card, CardContent } from "@material-ui/core";
 import { UserHealthInfoConsumer } from "../../store/user-health-info-context";
 
@@ -88,28 +88,39 @@ export default function ShowCalories() {
 
             <UserHealthInfoConsumer>
                 {({state}) => (
+                    <>
                     <Grid backgroundColor="pink" height='20vh' item xs={3}>
                     <Typography>전체칼로리</Typography>
-                    <Card variant="outlined">
-                    <CardContent>
-                        <Typography component="h6">
-                            {state.kcal} kcal
-                        </Typography>
-                    </CardContent> 
-                    </Card>
+                    <NutritionCard label='칼로리' value={state.kcal} unit='kcal' />
+
                 </Grid>
-                )}
-            </UserHealthInfoConsumer>
+                
 
             <Grid backgroundColor="lightblue"  height='20vh' justify="space-around" item xs={9}>
                 <Typography align="start" sx={{fontSize: "1rem" }}>
                     1일 권장 영양소
                 </Typography>
-                <OutlinedCard/>
+                <Grid container alignItems="center">
+                    <Grid item xs={3}>
+                        <NutritionCard label='탄수화물' value={state.carb} unit='g' />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <NutritionCard label='단백질' value={state.protein} unit='g' />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <NutritionCard label='지방' value={state.fat} unit='g' />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <NutritionCard label='나트륨' value={state.salt} unit='g' />
+                    </Grid>
+                </Grid>
                 {/* <Grid container alignItems="center">
                     <Grid item xs={3}><OutlinedCard/></Grid>
                 </Grid>   */}
             </Grid>
+            </>
+            )}
+            </UserHealthInfoConsumer>
             </Grid>
         </>   
     );
