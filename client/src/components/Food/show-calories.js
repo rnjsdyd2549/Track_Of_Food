@@ -99,7 +99,7 @@ export default function ShowCalories() {
 
                         <Grid backgroundColor="lightblue" height='20vh' justify="space-around" item xs={9}>
                             <Typography align="start" sx={{ fontSize: "1rem" }}>
-                                1일 권장 영양소
+                                권장 영양소
                             </Typography>
                             <Grid container alignItems="center">
                                 <Grid item xs={3}>
