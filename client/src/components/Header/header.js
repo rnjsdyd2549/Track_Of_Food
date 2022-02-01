@@ -13,14 +13,6 @@ const Logo = styled.img`
 
 export default function Header() {
   return (
-    // <Box
-    //   sx={{
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     //minHeight: '0vh',
-    //   }}
-    // >
-    //   <CssBaseline />
       <Box
         component="header"
         sx={{
@@ -36,11 +28,10 @@ export default function Header() {
         }}
       >
         <Container maxWidth="false">
-          <Link href="#" underline="none">
+          <Link href="/" underline="none">
             <Logo src={LogoImg} />
           </Link>
         </Container>
       </Box>
-    // </Box>
   );
 }

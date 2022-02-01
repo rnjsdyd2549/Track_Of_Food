@@ -5,6 +5,8 @@ import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 import { TextField } from '@mui/material';
 import OutlinedCard from "./card";
+import { Card, CardContent } from "@material-ui/core";
+import { UserHealthInfoConsumer } from "../../store/user-health-info-context";
 
 
 
@@ -84,16 +86,26 @@ export default function ShowCalories() {
             
             <Grid container alignItems="center">
 
-            <Grid backgroundColor="pink" height='20vh' item xs={3}>
-                <Typography>전체칼로리</Typography>
-            </Grid>
-            
+            <UserHealthInfoConsumer>
+                {({state}) => (
+                    <Grid backgroundColor="pink" height='20vh' item xs={3}>
+                    <Typography>전체칼로리</Typography>
+                    <Card variant="outlined">
+                    <CardContent>
+                        <Typography component="h6">
+                            {state.kcal} kcal
+                        </Typography>
+                    </CardContent> 
+                    </Card>
+                </Grid>
+                )}
+            </UserHealthInfoConsumer>
 
             <Grid backgroundColor="lightblue"  height='20vh' justify="space-around" item xs={9}>
                 <Typography align="start" sx={{fontSize: "1rem" }}>
                     1일 권장 영양소
                 </Typography>
-                <OutlinedCard />
+                <OutlinedCard/>
                 {/* <Grid container alignItems="center">
                     <Grid item xs={3}><OutlinedCard/></Grid>
                 </Grid>   */}
