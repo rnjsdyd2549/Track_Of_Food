@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'; // createContext를 불�
 
 //하나의 Context를 생성합니다.
 export const UserHealthInfoContext = createContext({
-    state: { kcal: 0, carb: 0, protein: 0, fat: 0, salt: 0 },
+    state: { kcal: 0, carb: 0, protein: 0, fat: 0, salt: 0},
     actions: {
         setKcal: () => { },
         setCarb: () => { },
@@ -19,6 +19,7 @@ const UserHealthInfoProvider = ({ children }) => {
     const [protein, setProtein] = useState(0); // 유저 1일 권장 단백질
     const [fat, setFat] = useState(0); // 유저 1일 권장 지방
     const [salt, setSalt] = useState(0); // 유저 1일 권장 나트륨
+    
 
 
     const value = {
