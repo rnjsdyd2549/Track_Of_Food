@@ -37,9 +37,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function ShowCalories() {
-    const [values, setValues] = useState({
-        amount: '1일 섭취량'
-    })
+    // const [values, setValues] = useState({
+    //     amount: '1일 섭취량'
+    // })
+
+    const [values, setValues] = useState(1)
 
     return (
         <UserHealthInfoConsumer>
